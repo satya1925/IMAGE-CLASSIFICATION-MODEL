@@ -35,7 +35,7 @@ The goal of this task is to build and evaluate a CNN model using TensorFlow/Kera
 - Interpret model predictions.
 
 
-## Features and Steps
+## Steps
 
 ### Data Loading:
 
@@ -222,4 +222,4 @@ plt.show()
 ```
 #### Output:
 
-> 
+> ![Predicted Output](https://github.com/user-attachments/assets/1bb24041-98d3-476e-a007-ed845cb19b37)
