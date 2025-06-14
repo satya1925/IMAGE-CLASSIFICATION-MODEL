@@ -166,14 +166,60 @@ plt.title("Loss")
 plt.show()
 
 ```
-> 
+> ![Model Accuracy](https://github.com/user-attachments/assets/b05635e2-42ab-4c8e-be3b-06ad1b486ed2)
+  ![Model Loss](https://github.com/user-attachments/assets/94c60252-cca9-4da0-9702-7d264d42e129)
+
+---
 
 ### Real Image Testing: 
 
 Load and classify an external image using its URL.
 
-
-Well-Commented Code: Clear and beginner-friendly explanations included.
-
+#### Testing image: 
 
 ![Image](https://github.com/user-attachments/assets/07705374-6140-498a-a727-abcff679398e)
+
+#### URL: 
+
+https://github.com/user-attachments/assets/07705374-6140-498a-a727-abcff679398e
+
+#### Code:
+
+```python
+
+import requests
+from PIL import Image
+from io import BytesIO
+import numpy as np
+from tensorflow.keras.preprocessing.image import img_to_array
+
+# Replace with your image URL
+image_url = "https://example.com/path-to-image.jpg"
+
+# Load image from URL
+response = requests.get(image_url)
+img = Image.open(BytesIO(response.content)).convert('RGB')
+img = img.resize((32, 32))  # Resize to match CIFAR-10 input shape
+
+# Preprocess the image
+img_array = img_to_array(img) / 255.0
+img_array = np.expand_dims(img_array, axis=0)
+
+# Predict
+prediction = model.predict(img_array)
+predicted_class = np.argmax(prediction)
+
+# Class names (CIFAR-10)
+class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 
+               'dog', 'frog', 'horse', 'ship', 'truck']
+
+# Show result
+plt.imshow(img)
+plt.title(f"Predicted: {class_names[predicted_class]}")
+plt.axis('off')
+plt.show()
+
+```
+#### Output:
+
+> 
